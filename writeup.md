@@ -23,6 +23,7 @@ The goals / steps of this project are the following:
 [image6]: ./test_signs/20_dang_curve.jpg "Traffic Sign 3"
 [image7]: ./test_signs/28_children.jpg "Traffic Sign 4"
 [image8]: ./test_signs/40_roundabout.jpg "Traffic Sign 5"
+[image9]: ./test_signs/01_30speed.jpg "Traffic Sign 6"
 
 ## Rubric Points
 ###Here I will consider the [rubric points](https://review.udacity.com/#!/rubrics/481/view) individually and describe how I addressed each point in my implementation.  
@@ -67,10 +68,10 @@ My final model consisted of the following layers, which were based off the Lenet
 | Layer         		|     Description	        					| 
 |:---------------------:|:---------------------------------------------:| 
 | Input         		| 32x32x3 RGB image   							| 
-| Convolution 3x3     	| 1x1 stride, VALID padding, outputs 28x28x6 	|
+| Convolution 5x5     	| 1x1 stride, VALID padding, outputs 28x28x6 	|
 | RELU					|												|
 | Max pooling	      	| 2x2 stride,  outputs 14x14x6 				|
-| Convolution 3x3     	| 1x1 stride, VALID padding, outputs 10x10x16 	|
+| Convolution 5x5     	| 1x1 stride, VALID padding, outputs 10x10x16 	|
 | RELU					|												|
 | Max pooling	      	| 2x2 stride,  outputs 5x5x16 				|
 | Flatten					|400 outputs												|
@@ -118,10 +119,10 @@ After setting up all the code to work with the new dataset, I ran the test with 
 Here are five German traffic signs that I found on the web:
 
 ![alt text][image4] ![alt text][image5] ![alt text][image6] 
-![alt text][image7] ![alt text][image8]
+![alt text][image7] ![alt text][image8] ![alt text][image9]
 
 
-These were all screenshots from a large chart of german signs.  Looking back, this probably made the signs very favorable for classifying, since they had white backgrounds and their alignment and lighting was ideal.  Near the end of this project, I made this realization and replaced one of the images with the roundabout image which was an actual picture taken of a sign.  This one would presumably be the most difficult to detect, since the other 4 were absolutely ideal.  
+These were all screenshots from a large chart of german signs.  Looking back, this probably made the signs very favorable for classifying, since they had white backgrounds and their alignment and lighting was ideal.  Near the end of this project, I made this realization and replaced one of the images with the roundabout image which was an actual picture taken of a sign.  This one would presumably be the most difficult to detect, since the other 4 were absolutely ideal.  I'll discuss this more down with the softmax section.  
 
 ####2. Discuss the model's predictions on these new traffic signs and compare the results to predicting on the test set. At a minimum, discuss what the predictions were, the accuracy on these new predictions, and compare the accuracy to the accuracy on the test set (OPTIONAL: Discuss the results in more detail as described in the "Stand Out Suggestions" part of the rubric).
 
@@ -134,63 +135,76 @@ Here are the results of the prediction:
 | Right Turn					| Right Turn											|
 | Children crossing	      		| Children crossing					 				|
 | Mandatory Roundabout			| Mandatory Roundabout      							|
+| 30 Speed Limit			| 30 Speed Limit      							|
 
 
 The model was able to correctly guess 5 of the 5 traffic signs, which gives an accuracy of 100%, which aligns similarly with the test and validation sets.  
 
 ####3. Describe how certain the model is when predicting on each of the five new images by looking at the softmax probabilities for each prediction. Provide the top 5 softmax probabilities for each image along with the sign type of each probability. (OPTIONAL: as described in the "Stand Out Suggestions" part of the rubric, visualizations can also be provided such as bar charts)
 
-For each of the softmax probabilities below, there was some confusion on my part on the results delivered by the algorithm.  The distribution and values didn't make sense to what I would intuitively expect.  The results were low percentage probabilities for images that were very ideal.  Some values returned negative (N/A below).  The algorithm still was successful in determing the most likely sign, but I need to do further research on how to interpret (or correct) the values shown below.  
+~~For each of the softmax probabilities below, there was some confusion on my part on the results delivered by the algorithm.  The distribution and values didn't make sense to what I would intuitively expect.  The results were low percentage probabilities for images that were very ideal.  Some values returned negative (N/A below).  The algorithm still was successful in determing the most likely sign, but I need to do further research on how to interpret (or correct) the values shown below.~~
 
-For the first image, the model predicts with 42% confidence that it's a Priority sign
+After fixing my code I was able to correctly calculate the Softmax probabilities.  My initial results with 5 examples each yielded 100% accuracy, which is great, but I wanted to make sure that it was actually working.  As I mentioned previously, because I picked really favorable pictures for the test, the algorithm wasn't really pushed to the limit.  Because of this, I searched for a 6th picture that was at skewed and at an angle with more distracting background.  I expected that the confidence on this picture would be much less, which proved true.  This picture was the third image below.  
 
-| Probability         	|     Prediction	        					| 
-|:---------------------:|:---------------------------------------------:| 
-| .42         			| Priority   									| 
-| N/A     				| 26 										|
-| N/A					| 14											|
-| N/A	      			| 32					 				|
-| N/A				    | 42      							|
-
-
-For the second image, the model predicts with 28% confidence that it's a Priority sign
+For the first image, the model predicts with 99.9% confidence that it's a Priority sign
 
 | Probability         	|     Prediction	        					| 
 |:---------------------:|:---------------------------------------------:| 
-| .28         			| Stop sign   									| 
-| .08     				| 26 										|
-| .06					| 14											|
-| .02	      			| 32					 				|
-| .02				    | 42      							|
+| .99         			| Priority   									| 
+| .00     				| Traffic Signals 										|
+| .00					| Yield											|
+| .00	      			| No Passing					 				|
+| .00				    | End of No Passing      							|
 
-For the third image, the model predicts with 71% confidence that it's a Priority sign
 
-| Probability         	|     Prediction	        					| 
-|:---------------------:|:---------------------------------------------:| 
-| .71         			| Right Turn   									| 
-| .30     				| 1 										|
-| .11					| 3											|
-| .10	      			| 5					 				|
-| .04				    | 0      							|
-
-For the fourth image, the model predicts with 51% confidence that it's a Priority sign
+For the second image, the model predicts with 99.9% confidence that it's a Stop Sign
 
 | Probability         	|     Prediction	        					| 
 |:---------------------:|:---------------------------------------------:| 
-| .51         			| Children crossing   									| 
-| .21     				| 29 										|
-| .11					| 24											|
-| .09	      			| 20					 				|
-| .01				    | 8      							|
+| .99         			| Stop Sign   									| 
+| .00     				| 29 										|
+| .00					| 25											|
+| .00	      			| 3					 				|
+| .00				    | 1      							|
 
-For the fifth image, the model predicts with 33% confidence that it's a Priority sign
+For the third image, the model predicts with 48% confidence that it's a Yield sign.  This lower probability was expected because I purposely chose a more difficult image to test how well the algorithm worked.  
 
 | Probability         	|     Prediction	        					| 
 |:---------------------:|:---------------------------------------------:| 
-| .34         			| Mandatory Roundabout   									| 
-| .01     				| 38 										|
-| .00					| 11											|
-| N/A	      			| 42					 				|
-| N/A				    | 6      							|
+| .48         			| Yield   									| 
+| .38     				| No Passing 										|
+| .14					| Turn Left											|
+| .00	      			| Keep Right					 				|
+| .00				    | Keep Left      							|
+
+For the fourth image, the model predicts with 99.9% confidence that it's a Dangerous Curve Right sign
+
+| Probability         	|     Prediction	        					| 
+|:---------------------:|:---------------------------------------------:| 
+| .99         			| Dangerous Curve Right   									| 
+| .00     				| Children Crossing 										|
+| .00					| Slippery Road											|
+| .00	      			| End of No Passing					 				|
+| .00				    | Bicycle Crossing      							|
+
+For the fifth image, the model predicts with 99.9% confidence that it's a Children Crossing sign
+
+| Probability         	|     Prediction	        					| 
+|:---------------------:|:---------------------------------------------:| 
+| .99         			| Children Crossing   									| 
+| .00     				| Dangerous Curve Right 										|
+| .00					| Bicycle Crossing											|
+| .00	      			| Pedestrians					 				|
+| .00				    | Slippery Road      							|
+
+For the sixth image, the model predicts with 99.9% confidence that it's a Mandatory Roundabout sign
+
+| Probability         	|     Prediction	        					| 
+|:---------------------:|:---------------------------------------------:| 
+| .99         			| Mandatory Roundabout   									| 
+| .00     				| Keep Right 										|
+| .00					| Keep Left											|
+| .00	      			| Speed 50					 				|
+| .00				    | Road Narrows Right      							|
 
 

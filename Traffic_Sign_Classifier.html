@@ -11863,7 +11863,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[22]:</div>
+<div class="prompt input_prompt">In&nbsp;[3]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span>
@@ -19383,7 +19383,7 @@ You do not need to modify this section.</p>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[13]:</div>
+<div class="prompt input_prompt">In&nbsp;[24]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">correct_prediction</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">equal</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">logits</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">tf</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">one_hot_y</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
@@ -19397,6 +19397,7 @@ You do not need to modify this section.</p>
     <span class="k">for</span> <span class="n">offset</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">num_examples</span><span class="p">,</span> <span class="n">BATCH_SIZE</span><span class="p">):</span>
         <span class="n">batch_x</span><span class="p">,</span> <span class="n">batch_y</span> <span class="o">=</span> <span class="n">X_data</span><span class="p">[</span><span class="n">offset</span><span class="p">:</span><span class="n">offset</span><span class="o">+</span><span class="n">BATCH_SIZE</span><span class="p">],</span> <span class="n">y_data</span><span class="p">[</span><span class="n">offset</span><span class="p">:</span><span class="n">offset</span><span class="o">+</span><span class="n">BATCH_SIZE</span><span class="p">]</span>
         <span class="n">accuracy</span> <span class="o">=</span> <span class="n">sess</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">accuracy_operation</span><span class="p">,</span> <span class="n">feed_dict</span><span class="o">=</span><span class="p">{</span><span class="n">x</span><span class="p">:</span> <span class="n">batch_x</span><span class="p">,</span> <span class="n">y</span><span class="p">:</span> <span class="n">batch_y</span><span class="p">,</span> <span class="n">keep_prob</span><span class="p">:</span> <span class="mf">1.0</span><span class="p">})</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">accuracy</span><span class="p">)</span>
         <span class="n">total_accuracy</span> <span class="o">+=</span> <span class="p">(</span><span class="n">accuracy</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">batch_x</span><span class="p">))</span>
     <span class="k">return</span> <span class="n">total_accuracy</span> <span class="o">/</span> <span class="n">num_examples</span>
 </pre></div>
@@ -19465,64 +19466,64 @@ You do not need to modify this section.</p>
 <pre>Training...
 
 EPOCH 1 ...
-Validation Accuracy = 71.1%
+Validation Accuracy = 69.1%
 
 EPOCH 2 ...
-Validation Accuracy = 85.5%
+Validation Accuracy = 82.7%
 
 EPOCH 3 ...
-Validation Accuracy = 89.2%
+Validation Accuracy = 87.2%
 
 EPOCH 4 ...
-Validation Accuracy = 91.6%
+Validation Accuracy = 90.8%
 
 EPOCH 5 ...
-Validation Accuracy = 92.8%
+Validation Accuracy = 91.7%
 
 EPOCH 6 ...
-Validation Accuracy = 93.3%
+Validation Accuracy = 92.4%
 
 EPOCH 7 ...
-Validation Accuracy = 93.0%
-
-EPOCH 8 ...
-Validation Accuracy = 93.7%
-
-EPOCH 9 ...
 Validation Accuracy = 93.9%
 
+EPOCH 8 ...
+Validation Accuracy = 93.6%
+
+EPOCH 9 ...
+Validation Accuracy = 94.8%
+
 EPOCH 10 ...
-Validation Accuracy = 94.3%
+Validation Accuracy = 94.2%
 
 EPOCH 11 ...
-Validation Accuracy = 94.5%
+Validation Accuracy = 94.2%
 
 EPOCH 12 ...
-Validation Accuracy = 95.1%
+Validation Accuracy = 94.6%
 
 EPOCH 13 ...
-Validation Accuracy = 95.0%
+Validation Accuracy = 95.4%
 
 EPOCH 14 ...
-Validation Accuracy = 95.4%
+Validation Accuracy = 95.1%
 
 EPOCH 15 ...
 Validation Accuracy = 95.4%
 
 EPOCH 16 ...
-Validation Accuracy = 94.2%
+Validation Accuracy = 95.6%
 
 EPOCH 17 ...
-Validation Accuracy = 95.4%
+Validation Accuracy = 95.8%
 
 EPOCH 18 ...
-Validation Accuracy = 95.3%
+Validation Accuracy = 95.7%
 
 EPOCH 19 ...
-Validation Accuracy = 95.3%
+Validation Accuracy = 95.8%
 
 EPOCH 20 ...
-Validation Accuracy = 95.4%
+Validation Accuracy = 95.7%
 
 Model saved
 </pre>
@@ -19578,9 +19579,9 @@ sets imply underfitting. A high accuracy on the training set but low accuracy on
 <pre>INFO:tensorflow:Restoring parameters from ./train_model.ckpt
 
 
-  Training set accuracy = 99.8%
-Validation set accuracy = 95.4%
-      Test set accuracy = 93.6%
+  Training set accuracy = 99.7%
+Validation set accuracy = 95.7%
+      Test set accuracy = 93.8%
 </pre>
 </div>
 </div>
@@ -19610,7 +19611,7 @@ Validation set accuracy = 95.4%
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[16]:</div>
+<div class="prompt input_prompt">In&nbsp;[43]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1">### Load the images and plot them here.</span>
@@ -19638,6 +19639,159 @@ Validation set accuracy = 95.4%
 <div class="output_wrapper">
 <div class="output">
 
+
+<div class="output_area">
+
+<div class="prompt"></div>
+
+
+
+
+<div class="output_png output_subarea ">
+<img src="data:image/png;base64,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
+AAAASUVORK5CYII=
+"
+>
+</div>
+
+</div>
 
 <div class="output_area">
 
@@ -20391,10 +20545,10 @@ ioJfiJii4Bcipij4hYgpCn4hYoqCX4iY8p/s0I92eB6BzQAAAABJRU5ErkJggg==
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[17]:</div>
+<div class="prompt input_prompt">In&nbsp;[44]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">correct_labels</span> <span class="o">=</span> <span class="p">[</span><span class="mi">12</span><span class="p">,</span><span class="mi">14</span><span class="p">,</span><span class="mi">20</span><span class="p">,</span><span class="mi">28</span><span class="p">,</span><span class="mi">40</span><span class="p">]</span> 
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">correct_labels</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">12</span><span class="p">,</span><span class="mi">14</span><span class="p">,</span><span class="mi">20</span><span class="p">,</span><span class="mi">28</span><span class="p">,</span><span class="mi">40</span><span class="p">]</span> 
 
 <span class="k">with</span> <span class="n">tf</span><span class="o">.</span><span class="n">Session</span><span class="p">()</span> <span class="k">as</span> <span class="n">sess</span><span class="p">:</span>
     <span class="n">sess</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">global_variables_initializer</span><span class="p">())</span>
@@ -20418,7 +20572,8 @@ ioJfiJii4Bcipij4hYgpCn4hYoqCX4iY8p/s0I92eB6BzQAAAABJRU5ErkJggg==
 
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>INFO:tensorflow:Restoring parameters from ./train_model.ckpt
-Test Set Accuracy = 100.0%
+0.833333
+Test Set Accuracy = 83.3%
 </pre>
 </div>
 </div>
@@ -20437,7 +20592,7 @@ Test Set Accuracy = 100.0%
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[18]:</div>
+<div class="prompt input_prompt">In&nbsp;[45]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">sign_list</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">sign_list</span><span class="p">)</span>
@@ -20451,17 +20606,21 @@ Test Set Accuracy = 100.0%
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[19]:</div>
+<div class="prompt input_prompt">In&nbsp;[47]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="k">with</span> <span class="n">tf</span><span class="o">.</span><span class="n">Session</span><span class="p">()</span> <span class="k">as</span> <span class="n">sess</span><span class="p">:</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">prediction</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">logits</span><span class="p">,</span> <span class="mi">1</span> <span class="p">)</span>
+
+<span class="k">with</span> <span class="n">tf</span><span class="o">.</span><span class="n">Session</span><span class="p">()</span> <span class="k">as</span> <span class="n">sess</span><span class="p">:</span>
     <span class="n">saver</span><span class="o">.</span><span class="n">restore</span><span class="p">(</span><span class="n">sess</span><span class="p">,</span> <span class="n">save_file</span><span class="p">)</span>
-    <span class="n">online_signs</span> <span class="o">=</span> <span class="n">sess</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">logits</span><span class="p">,</span> <span class="n">feed_dict</span><span class="o">=</span><span class="p">{</span><span class="n">x</span><span class="p">:</span> <span class="n">sign_list</span><span class="p">,</span> <span class="n">keep_prob</span> <span class="p">:</span> <span class="mf">1.0</span><span class="p">})</span>
-    <span class="n">predictions</span> <span class="o">=</span> <span class="n">sess</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">top_k</span><span class="p">(</span><span class="n">online_signs</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="nb">sorted</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
-    
+    <span class="n">online_signs</span> <span class="o">=</span> <span class="n">sess</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">prediction</span><span class="p">,</span> <span class="n">feed_dict</span><span class="o">=</span><span class="p">{</span><span class="n">x</span><span class="p">:</span> <span class="n">sign_list</span><span class="p">,</span> <span class="n">keep_prob</span> <span class="p">:</span> <span class="mf">1.0</span><span class="p">})</span>
+    <span class="n">predictions</span> <span class="o">=</span> <span class="n">sess</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">top_k</span><span class="p">(</span><span class="n">online_signs</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="mi">6</span><span class="p">,</span> <span class="nb">sorted</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
+
+
+<span class="nb">print</span><span class="p">(</span><span class="n">predictions</span><span class="p">)</span>
 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">predictions</span><span class="p">[</span><span class="mi">0</span><span class="p">])):</span>
     <span class="c1">#print(&#39;Image&#39;, i, &#39;prediction:&#39;, predictions[0][i], &#39;\n and predicted classes:&#39;, predictions[1][i])</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Image&#39;</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="s1">&#39;prediction:&#39;</span><span class="p">,</span><span class="s2">&quot;Sign&quot;</span><span class="p">,</span><span class="n">predictions</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="n">i</span><span class="p">][</span><span class="mi">0</span><span class="p">])</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Image&#39;</span><span class="p">,</span> <span class="n">predictions</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="n">i</span><span class="p">],</span> <span class="s1">&#39;prediction:&#39;</span><span class="p">,</span><span class="s2">&quot;Sign&quot;</span><span class="p">,</span><span class="n">predictions</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="n">i</span><span class="p">])</span>
     
 </pre></div>
 
@@ -20480,11 +20639,13 @@ Test Set Accuracy = 100.0%
 
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>INFO:tensorflow:Restoring parameters from ./train_model.ckpt
-Image 0 prediction: Sign 12
-Image 1 prediction: Sign 14
-Image 2 prediction: Sign 20
-Image 3 prediction: Sign 28
-Image 4 prediction: Sign 40
+TopKV2(values=array([40, 28, 20, 14, 13, 12], dtype=int64), indices=array([5, 4, 3, 2, 0, 1]))
+Image 5 prediction: Sign 40
+Image 4 prediction: Sign 28
+Image 3 prediction: Sign 20
+Image 2 prediction: Sign 14
+Image 0 prediction: Sign 13
+Image 1 prediction: Sign 12
 </pre>
 </div>
 </div>
@@ -20506,48 +20667,30 @@ Image 4 prediction: Sign 40
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>For each of the new images, print out the model's softmax probabilities to show the <strong>certainty</strong> of the model's predictions (limit the output to the top 5 probabilities for each image). <a href="https://www.tensorflow.org/versions/r0.12/api_docs/python/nn.html#top_k"><code>tf.nn.top_k</code></a> could prove helpful here.</p>
-<p>The example below demonstrates how tf.nn.top_k can be used to find the top k predictions for each image.</p>
-<p><code>tf.nn.top_k</code> will return the values and indices (class ids) of the top k predictions. So if k=3, for each sign, it'll return the 3 largest probabilities (out of a possible 43) and the correspoding class ids.</p>
-<p>Take this numpy array as an example. The values in the array represent predictions. The array contains softmax probabilities for five candidate images with six possible classes. <code>tf.nn.top_k</code> is used to choose the three classes with the highest probability:</p>
-
-<pre><code># (5, 6) array
-a = np.array([[ 0.24879643,  0.07032244,  0.12641572,  0.34763842,  0.07893497,
-         0.12789202],
-       [ 0.28086119,  0.27569815,  0.08594638,  0.0178669 ,  0.18063401,
-         0.15899337],
-       [ 0.26076848,  0.23664738,  0.08020603,  0.07001922,  0.1134371 ,
-         0.23892179],
-       [ 0.11943333,  0.29198961,  0.02605103,  0.26234032,  0.1351348 ,
-         0.16505091],
-       [ 0.09561176,  0.34396535,  0.0643941 ,  0.16240774,  0.24206137,
-         0.09155967]])</code></pre>
-<p>Running it through <code>sess.run(tf.nn.top_k(tf.constant(a), k=3))</code> produces:</p>
-
-<pre><code>TopKV2(values=array([[ 0.34763842,  0.24879643,  0.12789202],
-       [ 0.28086119,  0.27569815,  0.18063401],
-       [ 0.26076848,  0.23892179,  0.23664738],
-       [ 0.29198961,  0.26234032,  0.16505091],
-       [ 0.34396535,  0.24206137,  0.16240774]]), indices=array([[3, 0, 5],
-       [0, 1, 4],
-       [0, 5, 1],
-       [1, 3, 5],
-       [1, 4, 3]], dtype=int32))</code></pre>
-<p>Looking just at the first row we get <code>[ 0.34763842,  0.24879643,  0.12789202]</code>, you can confirm these are the 3 largest probabilities in <code>a</code>. You'll also notice <code>[3, 0, 5]</code> are the corresponding indices.</p>
 
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[20]:</div>
+<div class="prompt input_prompt">In&nbsp;[42]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="k">with</span> <span class="n">tf</span><span class="o">.</span><span class="n">Session</span><span class="p">()</span> <span class="k">as</span> <span class="n">sess</span><span class="p">:</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#softmax_logits = tf.nn.softmax(logits)</span>
+
+<span class="n">top_k</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">top_k</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">softmax</span><span class="p">(</span><span class="n">logits</span><span class="p">),</span><span class="mi">6</span><span class="p">)</span>
+
+<span class="k">with</span> <span class="n">tf</span><span class="o">.</span><span class="n">Session</span><span class="p">()</span> <span class="k">as</span> <span class="n">sess</span><span class="p">:</span>
     <span class="n">saver</span><span class="o">.</span><span class="n">restore</span><span class="p">(</span><span class="n">sess</span><span class="p">,</span> <span class="n">save_file</span><span class="p">)</span>
-    <span class="n">online_signs</span> <span class="o">=</span> <span class="n">sess</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">logits</span><span class="p">,</span> <span class="n">feed_dict</span><span class="o">=</span><span class="p">{</span><span class="n">x</span><span class="p">:</span> <span class="n">sign_list</span><span class="p">,</span> <span class="n">keep_prob</span> <span class="p">:</span> <span class="mf">1.0</span><span class="p">})</span>
-    <span class="n">predictions</span> <span class="o">=</span> <span class="n">sess</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">top_k</span><span class="p">(</span><span class="n">online_signs</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="nb">sorted</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
+    <span class="c1">#my_softmax_logits = sess.run(softmax_logits, feed_dict={x: sign_list, keep_prob: 1.0})</span>
+    <span class="c1">#signs_softmax = sess.run(tf.nn.softmax(my_softmax_logits))</span>
+    <span class="c1">#predictions = sess.run(tf.nn.top_k(signs_softmax, k=5, sorted=True))</span>
     
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">SOFTMAX&quot;</span><span class="p">)</span>
+    <span class="n">predictions</span> <span class="o">=</span> <span class="n">sess</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">top_k</span><span class="p">,</span> <span class="n">feed_dict</span><span class="o">=</span><span class="p">{</span>
+        <span class="n">x</span><span class="p">:</span> <span class="n">sign_list</span><span class="p">,</span> 
+        <span class="n">keep_prob</span><span class="p">:</span> <span class="mf">1.0</span><span class="p">})</span>
+
+<span class="c1">#print(&quot;predictions&quot;,predictions)</span>
 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">predictions</span><span class="p">[</span><span class="mi">0</span><span class="p">])):</span>
     <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Image&#39;</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="s1">&#39;prediction:&#39;</span><span class="p">,</span> <span class="n">predictions</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="n">i</span><span class="p">],</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1"> and predicted classes:&#39;</span><span class="p">,</span> <span class="n">predictions</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="n">i</span><span class="p">])</span>
 </pre></div>
@@ -20567,18 +20710,23 @@ a = np.array([[ 0.24879643,  0.07032244,  0.12641572,  0.34763842,  0.07893497,
 
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>INFO:tensorflow:Restoring parameters from ./train_model.ckpt
-
-SOFTMAX
-Image 0 prediction: [ 42.55155182  -0.7266894   -1.52045679] 
- and predicted classes: [12 26 14]
-Image 1 prediction: [ 28.01244354   8.08547878   5.83681536] 
- and predicted classes: [14  1  3]
-Image 2 prediction: [ 71.49072266  30.4050293   29.54035759] 
- and predicted classes: [20 28 23]
-Image 3 prediction: [ 51.1533432   20.81463051  10.83214092] 
- and predicted classes: [28 29 24]
-Image 4 prediction: [ 33.79200363   1.43133831   0.12103556] 
- and predicted classes: [40 38 11]
+Image 0 prediction: [  1.00000000e+00   4.34469364e-24   6.31696445e-30   6.84808308e-31
+   1.93900262e-31   1.53823686e-31] 
+ and predicted classes: [12 26 13 10 42 14]
+Image 1 prediction: [  9.99976039e-01   1.95864486e-05   3.97229360e-06   4.29761599e-07
+   9.98903076e-08   1.30944127e-08] 
+ and predicted classes: [14 29 25  3  1 17]
+Image 2 prediction: [ 0.48172793  0.37082523  0.13879798  0.00405282  0.00224047  0.00081055] 
+ and predicted classes: [13  9 34 38 39 17]
+Image 3 prediction: [  1.00000000e+00   5.33173956e-11   4.99870770e-17   3.05846606e-20
+   4.78486180e-21   3.42575880e-23] 
+ and predicted classes: [20 28 23 41 29 25]
+Image 4 prediction: [  1.00000000e+00   7.51234275e-09   4.22055967e-12   2.64683078e-13
+   3.07177689e-17   1.06834578e-17] 
+ and predicted classes: [28 20 29 27 23 24]
+Image 5 prediction: [  9.99999642e-01   3.90659068e-07   8.68589406e-16   8.53769589e-18
+   4.24553164e-19   2.35924625e-20] 
+ and predicted classes: [40 38 39  2 34 20]
 </pre>
 </div>
 </div>
